@@ -13,9 +13,32 @@ client.on('error', function (err) {
   console.log("Error " + err);
 });
 
+// initial setup of game state
+client.set('count', 0);
+
+client.get('count', function (err, reply) {
+  console.log(reply.toString());
+});
+
 // setup server API
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname+'/index.html'));
+});
+
+app.post('/add', function (req, res) {
+  console.log('in POST /add');
+});
+
+app.post('/sub', function (req, res) {
+  console.log('in POST /sub');
+});
+
+app.post('/clear', function (req, res) {
+  console.log('in POST /clear');
+});
+
+app.post('/show', function (req, res) {
+  console.log('in POST /show');
 });
 
 // set port
