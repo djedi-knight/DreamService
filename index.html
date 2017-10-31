@@ -1,4 +1,5 @@
 <html>
+
 <head>
   <title>DreamService</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -6,6 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
   <div style="margin:100px;">
     <nav class="navbar navbar-inverse navbar-static-top">
@@ -13,11 +15,26 @@
         <a class="navbar-brand" href="/">DreamService</a>
       </div>
     </nav>
-    <div class="jumbotron"  style="padding:40px;">
-      <h1>Hello, world!</h1>
-      <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+    <div class="jumbotron" style="padding:40px;">
+      <h1>Game State</h1>
+      <p>Count: 0</p>
     </div>
+    <form>
+      <div class="form-group row">
+        <label for="stateChangeInput" class="col-sm-1 col-form-label">Input</label>
+        <div class="col-sm-2">
+          <input type="number" class="form-control" id="stateChangeInput" placeholder="Enter a number">
+        </div>
+        <div class="col-sm-9">
+          <button type="button" class="btn btn-primary">Add</button>
+          <button type="button" class="btn btn-secondary">Subtract</button>
+          <button type="button" class="btn btn-danger">Clear</button>
+          <button type="button" class="btn btn-info">Show</button>
+        </div>
+      </div>
+      <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    </form>
   </div>
 </body>
+
 </html>
