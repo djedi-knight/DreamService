@@ -23,19 +23,59 @@
       <label for="stateChangeInput">Input</label>
       <input type="number" class="form-control" id="stateChangeInput" placeholder="Enter a number">
     </div>
-    <form class="form-inline" action="/add" method="POST">
+    <form action="/" id="addForm">
       <button type="submit" class="btn btn-block btn-primary">Add</button>
     </form>
-    <form class="form-inline" action="/sub" method="POST">
+    <form action="/" id="subtractForm">
       <button type="submit" class="btn btn-block btn-secondary">Subtract</button>
     </form>
-    <form class="form-inline" action="/clear" method="POST">
+    <form action="/" id="clearForm">
       <button type="submit" class="btn btn-block btn-danger">Clear</button>
     </form>
-    <form class="form-inline" action="/show" method="POST">
+    <form action="/" id="showForm">
       <button type="submit" class="btn btn-block btn-info">Show</button>
     </form>
   </div>
+
+  <!-- JS Code -->
+  <script>
+    // Attach a submit handlers to the forms
+    $("#addForm").submit(function(event) {
+
+      // Stop form from submitting normally
+      event.preventDefault();
+
+      // POST to /add API
+      $.post( '/add', {test: 'works'});
+    });
+
+    $("#subtractForm").submit(function(event) {
+
+      // Stop form from submitting normally
+      event.preventDefault();
+
+      // POST to /sub API
+      $.post( '/sub', {test: 'works'});
+    });
+
+    $("#clearForm").submit(function(event) {
+
+      // Stop form from submitting normally
+      event.preventDefault();
+
+      // POST to /clear API
+      $.post( '/clear', {test: 'works'});
+    });
+
+    $("#showForm").submit(function(event) {
+
+      // Stop form from submitting normally
+      event.preventDefault();
+
+      // POST to /show API
+      $.post( '/show', {test: 'works'});
+    });
+  </script>
 </body>
 
 </html>

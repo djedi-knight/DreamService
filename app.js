@@ -1,5 +1,6 @@
 var app = require('express')();
 var redis = require('redis');
+var bodyParser = require('body-parser');
 var path = require('path');
 
 // create a new Redis client and connect to Redis Labs instance
@@ -20,6 +21,10 @@ client.get('count', function (err, reply) {
   console.log(reply.toString());
 });
 
+// set server to support JSON-encoded bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // setup server API
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname+'/index.html'));
@@ -27,18 +32,22 @@ app.get('/', function (req, res) {
 
 app.post('/add', function (req, res) {
   console.log('in POST /add');
+  console.log('req.body', req.body);
 });
 
 app.post('/sub', function (req, res) {
   console.log('in POST /sub');
+  console.log('req.body', req.body);
 });
 
 app.post('/clear', function (req, res) {
   console.log('in POST /clear');
+  console.log('req.body', req.body);
 });
 
 app.post('/show', function (req, res) {
   console.log('in POST /show');
+  console.log('req.body', req.body);
 });
 
 // set port
