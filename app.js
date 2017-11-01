@@ -12,13 +12,13 @@ var client = redis.createClient({
 
 // If an error occurs, print it to the console
 client.on('error', function (err) {
-  console.log("Error " + err);
+  console.log('Error: ' + err);
 });
 
 // Initial setup of game state
 client.set('count', 0);
 
-// Set server to support JSON-encoded bodies
+// Setup server to support JSON-encoded bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -50,24 +50,64 @@ app.post('/add', function (req, res) {
       }
 
       // Return result
-      res.send({result: newCount});
+      res.send({count: newCount});
     });
   });
 });
 
 app.post('/sub', function (req, res) {
-  console.log('in POST /sub');
-  console.log('req.body', req.body);
+  // Get value from request body
+  let value = parseInt(req.body.value || 0);
+
+  // Get game state
+  client.get('count', function (err, currentCount) {
+    if (err) {
+      throw(err);
+    }
+
+    // Subtract value from game state
+    let updatedCount = parseInt(currentCount) - value;
+
+    // Set updated game state
+    client.set('count', updatedCount);
+
+    // Get new game state
+    client.get('count', function (err, newCount) {
+      if (err) {
+        throw(err);
+      }
+
+      // Return result
+      res.send({count: newCount});
+    });
+  });
 });
 
 app.post('/clear', function (req, res) {
-  console.log('in POST /clear');
-  console.log('req.body', req.body);
+  // Reset game state
+  client.set('count', 0);
+
+  // Get new game state
+  client.get('count', function (err, newCount) {
+    if (err) {
+      throw(err);
+    }
+
+    // Return result
+    res.send({count: newCount});
+  });
 });
 
 app.post('/show', function (req, res) {
-  console.log('in POST /show');
-  console.log('req.body', req.body);
+  // Get game state
+  client.get('count', function (err, count) {
+    if (err) {
+      throw(err);
+    }
+
+    // Return result
+    res.send({count: count});
+  });
 });
 
 // Set port

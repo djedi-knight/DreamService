@@ -17,7 +17,7 @@
     </nav>
     <div class="jumbotron" style="padding:40px;">
       <h1>Game State</h1>
-      <p>Count: 0</p>
+      <p>Count: <span id="stateValue">N/A (press 'Show')</span></p>
     </div>
     <div class="form-group">
       <label for="stateChangeInput">Input</label>
@@ -39,26 +39,54 @@
   <!-- JS Code -->
   <script>
     // Attach click handlers to buttons
-    $("#addButton").click(function(event) {
+    $('#addButton').click(function(event) {
       // Get value from input field
-      let value = $("#stateChangeInput").val();
+      let value = $('#stateChangeInput').val();
+
       // POST to /add API
-      $.post( '/add', {value: value});
+      $.post( '/add', {value: value}, function(data) {
+        // Set new state value from returned data
+        $('#stateValue').text(data.count);
+
+        // Reset input field
+        $('#stateChangeInput').val('');
+      });
     });
 
-    $("#subtractButton").click(function(event) {
+    $('#subtractButton').click(function(event) {
+      // Get value from input field
+      let value = $('#stateChangeInput').val();
+
       // POST to /sub API
-      $.post( '/sub', {test: 'works'});
+      $.post( '/sub', {value: value}, function(data) {
+        // Set new state value from returned data
+        $('#stateValue').text(data.count);
+
+        // Reset input field
+        $('#stateChangeInput').val('');
+      });
     });
 
-    $("#clearButton").click(function(event) {
+    $('#clearButton').click(function(event) {
       // POST to /clear API
-      $.post( '/clear', {test: 'works'});
+      $.post( '/clear', function(data) {
+        // Set new state value from returned data
+        $('#stateValue').text(data.count);
+
+        // Reset input field
+        $('#stateChangeInput').val('');
+      });
     });
 
-    $("#showButton").click(function(event) {
+    $('#showButton').click(function(event) {
       // POST to /show API
-      $.post( '/show', {test: 'works'});
+      $.post( '/show', function(data) {
+        // Set new state value from returned data
+        $('#stateValue').text(data.count);
+
+        // Reset input field
+        $('#stateChangeInput').val('');
+      });
     });
   </script>
 </body>
