@@ -23,55 +23,40 @@
       <label for="stateChangeInput">Input</label>
       <input type="number" class="form-control" id="stateChangeInput" placeholder="Enter a number">
     </div>
-    <form action="/" id="addForm">
-      <button type="submit" class="btn btn-block btn-primary">Add</button>
-    </form>
-    <form action="/" id="subtractForm">
-      <button type="submit" class="btn btn-block btn-secondary">Subtract</button>
-    </form>
-    <form action="/" id="clearForm">
-      <button type="submit" class="btn btn-block btn-danger">Clear</button>
-    </form>
-    <form action="/" id="showForm">
-      <button type="submit" class="btn btn-block btn-info">Show</button>
-    </form>
+    <div class="form-group">
+      <button id="addButton" class="btn btn-block btn-primary">Add</button>
+    </div>
+    <div class="form-group">
+      <button id="subtractButton" class="btn btn-block btn-secondary">Subtract</button>
+    </div>
+    <div class="form-group">
+      <button id="clearButton" class="btn btn-block btn-danger">Clear</button>
+    </div>
+    <div class="form-group">
+      <button id="showButton" class="btn btn-block btn-info">Show</button>
+    </div>
   </div>
-
   <!-- JS Code -->
   <script>
-    // Attach a submit handlers to the forms
-    $("#addForm").submit(function(event) {
-
-      // Stop form from submitting normally
-      event.preventDefault();
-
+    // Attach click handlers to buttons
+    $("#addButton").click(function(event) {
+      // Get value from input field
+      let value = $("#stateChangeInput").val();
       // POST to /add API
-      $.post( '/add', {test: 'works'});
+      $.post( '/add', {value: value});
     });
 
-    $("#subtractForm").submit(function(event) {
-
-      // Stop form from submitting normally
-      event.preventDefault();
-
+    $("#subtractButton").click(function(event) {
       // POST to /sub API
       $.post( '/sub', {test: 'works'});
     });
 
-    $("#clearForm").submit(function(event) {
-
-      // Stop form from submitting normally
-      event.preventDefault();
-
+    $("#clearButton").click(function(event) {
       // POST to /clear API
       $.post( '/clear', {test: 'works'});
     });
 
-    $("#showForm").submit(function(event) {
-
-      // Stop form from submitting normally
-      event.preventDefault();
-
+    $("#showButton").click(function(event) {
       // POST to /show API
       $.post( '/show', {test: 'works'});
     });
