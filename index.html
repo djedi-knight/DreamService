@@ -38,6 +38,15 @@
   </div>
   <!-- JS Code -->
   <script>
+    // Helper methods
+    function setCountAndResetInput(count) {
+      // Set new state value from returned data
+      $('#stateValue').text(count);
+
+      // Reset input field
+      $('#stateChangeInput').val('');
+    }
+
     // Attach click handlers to buttons
     $('#addButton').click(function(event) {
       // Get value from input field
@@ -45,11 +54,8 @@
 
       // POST to /add API
       $.post( '/add', {value: value}, function(data) {
-        // Set new state value from returned data
-        $('#stateValue').text(data.count);
-
-        // Reset input field
-        $('#stateChangeInput').val('');
+        // Set count and reset input
+        setCountAndResetInput(data.count);
       });
     });
 
@@ -59,33 +65,24 @@
 
       // POST to /sub API
       $.post( '/sub', {value: value}, function(data) {
-        // Set new state value from returned data
-        $('#stateValue').text(data.count);
-
-        // Reset input field
-        $('#stateChangeInput').val('');
+        // Set count and reset input
+        setCountAndResetInput(data.count);
       });
     });
 
     $('#clearButton').click(function(event) {
       // POST to /clear API
       $.post( '/clear', function(data) {
-        // Set new state value from returned data
-        $('#stateValue').text(data.count);
-
-        // Reset input field
-        $('#stateChangeInput').val('');
+        // Set count and reset input
+        setCountAndResetInput(data.count);
       });
     });
 
     $('#showButton').click(function(event) {
       // POST to /show API
       $.post( '/show', function(data) {
-        // Set new state value from returned data
-        $('#stateValue').text(data.count);
-
-        // Reset input field
-        $('#stateChangeInput').val('');
+        // Set count and reset input
+        setCountAndResetInput(data.count);
       });
     });
   </script>
