@@ -1,5 +1,6 @@
-# DreamService
-A Simple Game Server using Express/ Redis
+# redis-server
+
+A simple test server using Express/ Redis
 
 Once the server has been downloaded/ installed, run the following:
 ```
