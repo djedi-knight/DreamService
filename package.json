@@ -1,7 +1,7 @@
 {
-  "name": "DreamService",
+  "name": "redis-server",
   "version": "1.0.0",
-  "description": "A simple NodeJS Web Service using ExpressJS and Redis",
+  "description": "A simple test server using Express/ Redis",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
